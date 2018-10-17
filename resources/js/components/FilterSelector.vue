@@ -18,7 +18,12 @@
 </template>
 
 <script>
+    import SelectMultiple from './SelectMultiple'
+
     export default {
+        components: {
+            SelectMultiple
+        },
         methods: {
             filterUpdate(filter, currentValue) {
                 this.filterChanged(Object.assign(filter, {

@@ -10,7 +10,9 @@
         </ul>
 
         <ul v-if="optionsShown && availableOptions.length > 0" class="options">
-            <li v-for="option in availableOptions" @click="select(option)">{{ option.name }}</li>
+            <li v-for="option in availableOptions" @click="select(option)" :class="{selected: selected.includes(option)}">
+                {{ option.name }}
+            </li>
         </ul>
 
     </div>
@@ -95,7 +97,6 @@
 </script>
 
 <style lang="scss">
-
     .form-select-multiple
     {
         display: flex;
@@ -105,6 +106,12 @@
         div.selected
         {
             margin: auto 0;
+
+            & + ul.options li.selected::after
+            {
+                content: '\2713';
+                float: right;
+            }
         }
 
         ul
@@ -114,21 +121,18 @@
 
             &.selected
             {
-                margin-left: -.5rem;
+                display: flex;
+                flex-wrap: wrap;
+                margin-left: -.75rem;
+                padding: .125rem;
 
                 & > li
                 {
                     background-color: var(--primary);
-                    border-radius: .25em;
+                    border-radius: .25rem;
                     color: var(--white);
-                    display: inline-flex;
-                    margin: 0 .25em .25em 0;
+                    margin: .125rem;
                     padding: .125rem .35rem;
-
-                    &:first-child
-                    {
-                        margin-top: .25rem;
-                    }
 
                     &:hover
                     {
@@ -139,10 +143,9 @@
 
             &.options
             {
-                background-color: #f0f0f0;
+                background-color: var(\--30);
                 border-radius: .5rem;
-                border: 1px solid #ccc;
-                color: var(--90);
+                border: 1px solid var(\--60);
                 left: .1rem;
                 padding: .25rem 0;
                 position: absolute;
