@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Filters;
+namespace rcknr\Nova\Filters;
 
 use Laravel\Nova\Filters\Filter;
 

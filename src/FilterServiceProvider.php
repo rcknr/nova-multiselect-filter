@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Filters;
+namespace rcknr\Nova\Filters;
 
 use Laravel\Nova\Nova;
 use Laravel\Nova\Events\ServingNova;
@@ -18,15 +18,5 @@ class FilterServiceProvider extends ServiceProvider
         Nova::serving(function (ServingNova $event) {
             Nova::script('multiselect-filter', __DIR__.'/../dist/js/filter.js');
         });
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }
