@@ -17,7 +17,7 @@ composer require rcknr/nova-multiselect-filter
 Use `MultiselectFilter` class instead of `Filter`:
 
 ```php
-use Acme\Filters\MultiselectFilter;
+use rcknr\Nova\Filters\MultiselectFilter;
 
 class UserType extends MultiselectFilter
 {
