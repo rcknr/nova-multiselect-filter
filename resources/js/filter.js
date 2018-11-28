@@ -1,5 +1,5 @@
 import FilterSelector from './components/FilterSelector'
 
 Nova.booting(Vue => {
-    Vue.component('filter-selector', Vue.component('filter-selector').extend(FilterSelector));
+    Vue.component('select-filter', Vue.component('select-filter').extend(FilterSelector));
 });
