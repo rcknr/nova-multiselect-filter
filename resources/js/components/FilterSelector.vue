@@ -26,9 +26,7 @@
         },
         methods: {
             filterUpdate(filter, currentValue) {
-                this.filterChanged(Object.assign(filter, {
-                    currentValue
-                }));
+                this.handleChange({target: {value: currentValue}});
             }
         },
     }
