@@ -31,7 +31,6 @@ class UserType extends MultiselectFilter
       return [
           'Administrator' => 'admin',
           'Editor' => 'editor',
-
       ];
   }
 }

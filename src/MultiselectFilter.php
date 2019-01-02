@@ -7,12 +7,9 @@ use Laravel\Nova\Filters\Filter;
 abstract class MultiselectFilter extends Filter
 {
     /**
-     * Prepare the filter for JSON serialization.
+     * The filter's component.
      *
-     * @return array
+     * @var string
      */
-    public function jsonSerialize()
-    {
-        return array_add(parent::jsonSerialize(), 'multiple', true);
-    }
+    public $component = 'multiselect-filter';
 }
