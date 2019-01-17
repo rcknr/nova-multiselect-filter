@@ -30,11 +30,15 @@
                 type: String,
                 required: true,
             },
+            resourceName: {
+                type: String,
+                required: true,
+            },
         },
 
         methods: {
             handleChange(value) {
-                this.$store.commit('updateFilterState', {
+                this.$store.commit(`${this.resourceName}/updateFilterState`, {
                     filterClass: this.filterKey,
                     value: value,
                 })
@@ -45,7 +49,7 @@
 
         computed: {
             filter() {
-                return this.$store.getters.getFilter(this.filterKey)
+                return this.$store.getters[`${this.resourceName}/getFilter`](this.filterKey)
             },
 
             value() {
