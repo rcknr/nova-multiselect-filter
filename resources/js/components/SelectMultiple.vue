@@ -118,13 +118,19 @@
 
             &.options
             {
+                position:relative;
+                margin-top: 20px;
                 background-color: var(\--30);
                 border-radius: .5rem;
                 border: 1px solid var(\--60);
                 left: .1rem;
                 padding: .25rem 0;
                 position: absolute;
-                width: calc(100% - 1.5rem);
+                margin-top:35px;
+                max-height: 185px;
+                overflow-y: auto;
+                z-index: 1000;
+                width: calc(100%);
 
                 & > li
                 {
