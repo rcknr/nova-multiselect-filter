@@ -1,5 +1,5 @@
 <template>
-    <div class="form-select-multiple" ref="toggle">
+    <div class="form-select-multiple" ref="toggle" style="position:relative;">
 
         <div v-if="selected.length === 0" class="empty"></div>
         <ul v-else ref="selected" class="selected">
@@ -118,8 +118,6 @@
 
             &.options
             {
-                position:relative;
-                margin-top: 20px;
                 background-color: var(\--30);
                 border-radius: .5rem;
                 border: 1px solid var(\--60);
