@@ -38,6 +38,10 @@
 
         methods: {
             handleChange(value) {
+                //No need to update state if value is same as current value
+                if(value === this.value) {
+                  return
+                }
                 this.$store.commit(`${this.resourceName}/updateFilterState`, {
                     filterClass: this.filterKey,
                     value: value,
