@@ -21,6 +21,23 @@ use rcknr\Nova\Filters\MultiselectFilter;
 
 class UserType extends MultiselectFilter
 {
+  public function __construct()
+  {
+        // define badge / text color
+        $this->colors([
+            'Administrator' => '#abc', // badge only, text color depends on badge
+            'Editor' => [
+                'color' => '#fff',
+                'background' => '#ffe309'
+        ]]);
+        
+        // show searchbar to filter select options
+        $this->showSearch();
+        
+        // hide color dots on select list
+        $this->hideDots();
+  }
+ 
   public function apply(Request $request, $query, $value)
   {
       return $query->whereIn('user_role', $value);

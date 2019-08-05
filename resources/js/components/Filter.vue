@@ -9,7 +9,10 @@
                 :dusk="filter.name + '-filter-select'"
                 class="block w-full form-control-sm form-select"
                 :options="filter.options"
+                :colors="filter.colorMap"
                 :value="value"
+                :search="filter.showSearch"
+                :dots="filter.showDots"
                 @change="handleChange"
             />
         </div>
@@ -52,11 +55,10 @@
             filter() {
                 return this.$store.getters[`${this.resourceName}/getFilter`](this.filterKey)
             },
-
             value() {
                 return this.filter.currentValue
             },
-        },
+        }
     }
 </script>
 
