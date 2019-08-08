@@ -50,7 +50,7 @@
         }),
         computed: {
             availableOptions() {
-                return this.options.filter(option => !this.selected.includes(option) && option.name.toLowerCase().includes(this.searchValue.toLowerCase()));
+                return this.options.filter(option => !this.selected.includes(option) && option.name.toString().toLowerCase().includes(this.searchValue.toLowerCase()));
             },
             effectiveValue() {
                 const values = this.selected.map(e => e.value);
