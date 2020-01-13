@@ -1,15 +1,14 @@
 <template>
-    <div class="form-select-multiple" ref="toggle">
-
-        <div v-if="selected.length === 0" class="empty"></div>
-        <ul v-else ref="selected" class="selected">
-            <li v-for="option, index in selected" @click="remove(index)">
+    <div tabindex="-1" class="flex h-auto">
+        <div v-if="selected.length === 0" class="h-8 pt-1 leading-normal">&mdash;</div>
+        <ul v-else ref="selected" class="list-reset flex flex-wrap text-sm -ml-2 pb-1">
+            <li v-for="option, index in selected" @click="remove(index)" :class="option.value" class="bg-primary text-white rounded -ml-0 mt-1 mr-1 px-2 py-1 hover:bg-primary-dark">
                 {{ option.name }}
             </li>
         </ul>
 
-        <ul v-if="showDropdown && availableOptions.length > 0" class="options">
-            <li v-for="option in availableOptions" @click="select(option)" :class="{selected: selected.includes(option)}">
+        <ul v-if="showDropdown && availableOptions.length" class="list-reset absolute top-auto w-5/6 -ml-6 py-1 border border-60 rounded-lg bg-30">
+            <li v-for="option in availableOptions" @click="select(option)" class="px-3 py-1 hover:text-white hover:bg-primary-dark">
                 {{ option.name }}
             </li>
         </ul>
@@ -35,11 +34,7 @@
         computed: {
             availableOptions() {
                 return this.options.filter(option => !this.selected.includes(option));
-            },
-            effectiveValue() {
-                const values = this.selected.map(e => e.value);
-                return values.length === 0 ? '' : values;
-            },
+            }
         },
         methods: {
             select(option) {
@@ -50,7 +45,7 @@
                 this.selected.splice(index, 1);
             },
             toggle(event) {
-                if([this.$refs.toggle, this.$refs.selected].includes(event.target) && this.availableOptions.length > 0) {
+                if([this.$el, this.$refs.selected].includes(event.target) && this.availableOptions.length > 0) {
                     this.showDropdown = !this.showDropdown;
                 }
                 else {
@@ -63,81 +58,12 @@
             this.selected = this.options.filter(option => {
                 return this.value.includes(option.value);
             });
+            console.log(this);
         },
         watch: {
             selected: function() {
-                this.$emit('change', this.effectiveValue);
+                this.$emit('change', this.selected.map(e => e.value));
             }
         }
     }
 </script>
-
-<style lang="scss">
-    .form-select-multiple
-    {
-        display: flex;
-        min-height: 2rem;
-        height: auto;
-
-        .empty
-        {
-            margin: auto 0;
-
-            &:before
-            {
-                content: '\2014';
-            }
-        }
-
-        ul
-        {
-            list-style-type: none;
-            padding: 0;
-
-            &.selected
-            {
-                display: flex;
-                flex-wrap: wrap;
-                margin-left: -.75rem;
-                padding: .125rem;
-
-                & > li
-                {
-                    background-color: var(--primary);
-                    border-radius: .25rem;
-                    color: var(--white);
-                    margin: .125rem;
-                    padding: .125rem .35rem;
-
-                    &:hover
-                    {
-                        background-color: var(--primary-dark);
-                    }
-                }
-            }
-
-            &.options
-            {
-                background-color: var(\--30);
-                border-radius: .5rem;
-                border: 1px solid var(\--60);
-                left: .1rem;
-                padding: .25rem 0;
-                position: absolute;
-                width: calc(100% - 1.5rem);
-
-                & > li
-                {
-                    padding: .25rem .75rem;
-
-                    &:hover
-                    {
-                        background-color: var(--primary);
-                        color: var(--white);
-                    }
-                }
-            }
-        }
-    }
-
-</style>
