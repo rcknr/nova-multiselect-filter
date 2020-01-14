@@ -8,7 +8,7 @@
         </ul>
 
         <ul v-if="showDropdown && availableOptions.length" class="list-reset absolute top-auto w-5/6 -ml-6 py-1 border border-60 rounded-lg bg-30">
-            <li v-for="option in availableOptions" @click="select(option)" class="px-3 py-1 hover:text-white hover:bg-primary-dark">
+            <li v-for="option in availableOptions" @click="select(option)" class="truncate max-w-full px-3 py-1 hover:text-white hover:bg-primary-dark">
                 {{ option.name }}
             </li>
         </ul>
@@ -58,7 +58,6 @@
             this.selected = this.options.filter(option => {
                 return this.value.includes(option.value);
             });
-            console.log(this);
         },
         watch: {
             selected: function() {
